@@ -41,26 +41,50 @@
             border: 3px solid black;
             border-radius: 20px;
             padding: 30px 20px 20px 20px;
-            display:none;
+            display: none;
         }
     </style>
     <script>
-        let count = 1;
+        $(document).ready(function () {
+            $('#cards-box').empty()
+            listing();
+        });
 
-        // function hey() {
-        //     if (count % 2 == 0) {
-        //         alert("짝수입니다!")
-        //     } else {
-        //         alert('홀수입니다!')
-        //     }
-        //     count += 1;
-        // }
-        function openclose(){
-            let status=$('#post-box').css('display');
-            if (status=='block'){
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/post",
+                data: {},
+                success: function (response) {
+                    let articles = response['articles'];
+                    for (let i = 0; i < articles.length; i++) {
+                        let article = articles[i];
+                        let image = article["image"];
+                        let url = article["url"];
+                        let title = article["title"];
+                        let desc = article["desc"];
+                        let comment = article["comment"];
+                        let temp_html = `<div class="card">
+                             <img class="card-img-top" src="${image}" alt="Card image cap">
+                             <div class="card-body">
+                               <a href="${url}" target="_blank" class="card-title">${title}</a>
+                               <p class="card-text">${desc}</p>
+                               <p class="card-text comment">${comment}</p>
+                             </div>
+                           </div>`;
+                        $('#cards-box').append(temp_html);
+                    }
+                }
+            })
+        }
+
+
+        function openclose() {
+            let status = $('#post-box').css('display');
+            if (status == 'block') {
                 $('#post-box').hide();
                 $('#btn-posting-box').text('포스팅박스 열기');
-            }else{
+            } else {
                 $('#post-box').show();
                 $('#btn-posting-box').text('포스팅박스 닫기');
             }
@@ -83,7 +107,8 @@
         <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
         <hr class="my-4">
         <p class="lead">
-            <a onclick="openclose()" id="btn-posting-box" class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
+            <a onclick="openclose()" id="btn-posting-box" class="btn btn-primary btn-lg" href="#" role="button">포스팅박스
+                열기</a>
         </p>
     </div>
     <div class="article" id="post-box">
