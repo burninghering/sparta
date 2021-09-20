@@ -12,4 +12,6 @@ soup = BeautifulSoup(data.text, 'html.parser')
 
 #가져와야지
 title=soup.select_one('meta[property="og:title"]')['content']
-print(title)
+image=soup.select_one('meta[property="me2:image"]')['content']
+desc=soup.select_one('meta[property="og:description"]')['content']
+print(title,image,desc)
