@@ -88,12 +88,13 @@
         }
 
         function likeStar(name) {
-            $.ajax({
+            $.ajax({ //14.ajax는 자바스크립트로 서버와 브라우저가 비동기식으로 데이터를 교환하는거야.
                 type: 'POST',
                 url: '/api/like',
-                data: {sample_give: '샘플데이터'},
+                data: {name_give: name}, //15.아까 서버에서 네임을 요청했고, 클라이언트는 네임을 줘야지.
                 success: function (response) {
                     alert(response['msg']);
+                    window.location.reload() //16.새로고침!
                 }
             });
         }

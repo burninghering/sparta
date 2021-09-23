@@ -23,9 +23,13 @@ def show_stars():
 
 @app.route('/api/like', methods=['POST'])
 def like_star():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': 'like 연결되었습니다!'})
+    name_receive = request.form['name_give'] #8.서버쪽에서 name_give를 요청한다!
+    target_star = db.mystar.find_one({'name':name_receive}) #9.db에서 이름을 가지고 온다!
+    current_like=target_star['like'] #10
+    new_like=current_like+1 #11
+
+    db.mystar.update_one({'name':name_receive},{'$set':{'like':new_like}}) #12.db에 업데이트 해주기!
+    return jsonify({'msg': 'like 완료!'}) #13.이제 클라이언트로 이동하자.
 
 
 @app.route('/api/delete', methods=['POST'])
