@@ -21,7 +21,7 @@ db = client.dbsparta #dpsparta 라는 db이름으로 접속할 겁니다
 
 # 저장 - 예시
 doc = {'name':'bobby','age':21}
-db.users.insert_one(doc)
+db.hering.insert_one(doc)
 
 # 한 개 찾기 - 예시
 user = db.users.find_one({'name':'bobby'})

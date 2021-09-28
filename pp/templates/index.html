@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" co ntent="width=device-width, initial-scale=1.0"/>
+    <title>위링 | 방구석 여행기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Noto+Serif+KR:wght@300&display=swap"
+          rel="stylesheet">
+    <meta property="og:title" content="위링 여행정보"/>
+    <meta property="og:description" content="여행정보 공유기능"/>
+    <meta property="og:image" content="{{ url_for('static', filename='logo_white.png') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>HTML</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='{{ url_for("static", filename="mystyle.css") }}' rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+    <style>
+        * {
+            font-family: 'Nanum Myeongjo', serif;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .wrap {
+            width: 800px;
+            margin: auto;
+            background-color: lightsteelblue;
+            padding: 0px 10px 10px;
+        }
+
+        .button-top {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .content-wrap {
+            width: 500px;
+            margin: auto;
+            margin-top: 10px;
+            /*background-color: lightpink;*/
+        }
+
+
+        .button {
+            background-color: transparent;
+            border: 2px solid gray;
+            border-radius: 5px;
+            border: none;
+            font-size: 25px;
+        }
+
+        .form-floating {
+            padding: 20px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            background-color: aliceblue;
+            margin: 10px auto 0px auto;
+            position: center;
+            width: 800px;
+        }
+
+        .button-bottom {
+            display: flex;
+            justify-content: space-between;
+            margin: 170px 300px;
+
+        }
+
+
+        .input-group mb-3 {
+            background-color: aliceblue;
+        }
+
+
+        .btn-primary {
+            position: center;
+            margin: auto;
+
+        }
+
+        .row {
+            padding: 3px 5px 3px;
+            margin-top: 0px;
+        }
+
+        .col {
+            padding: 10px 10px 10px 10px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            margin: 50px 0px 0px 0px;
+            background-color: aliceblue;
+        }
+
+        .button-bottom {
+            position: center;
+        }
+
+        .content-wrap {
+            width: 600px;
+            margin: auto;
+            margin-top: 10px;
+            height: 1200px
+            /*background-color: lightpink;*/
+        }
+
+        .address {
+            width: 550px;
+        }
+
+        .home-button {
+            background-color: transparent;
+            border: none;
+            position: fixed;
+            right: 800px;
+            top: 1550px;
+            font-size: 25px;
+
+        }
+
+        .input-text {
+            height: 300px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<div class="jumbotron">
+    <div>
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+            featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    </div>
+</div>
+
+<div class="wrap" id="wrap">
+
+
+    <div class="button-top">
+        <div>
+            <button class="button" onclick="saveform()">upload</button>
+            <button class="button">back</button>
+        </div>
+    </div>
+
+
+    <div class="content-wrap">
+        <form>
+            <p><input type="date"></p>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">제목</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </form>
+
+        <div class="image-container">
+            <img style="width: 600px; height:400px; " id="preview-image"
+                 src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+            <input style="display: block;" type="file" id="input-image">
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p><input type="text" id="sample4_postcode" placeholder="우편번호">
+                    <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br></p>
+                <p><input type="text" class="address" id="sample4_roadAddress" placeholder="도로명주소"></p>
+                <span id="guide" style="color:#999;display:none"></span>
+                <input type="text" class="address" id="sample4_detailAddress" placeholder="상세주소">
+            </div>
+
+            <div class="form-floating">
+            <textarea class="form-control" style="max-height:220px; min-height:220px; height:220px;"
+                      placeholder="내용을 입력해 주세요" id="floatingTextarea2"
+                      style="height: 100px"></textarea>
+                <label for="floatingTextarea2"></label>
+                <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-primary" type="button">저장</button>
+                    <button class="btn btn-primary" type="button">취소</button>
+                </div>
+            </div>
+            <div class="button-bottom">
+                <button class="home-button">home</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+
+                var roadAddr = data.roadAddress;
+                var extraRoadAddr = '';
+
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                    extraRoadAddr += data.bname;
+                }
+
+                if (data.buildingName !== '' && data.apartment === 'Y') {
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+
+                if (extraRoadAddr !== '') {
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                if (roadAddr !== '') {
+                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("sample4_extraAddress").value = '';
+                }
+                var guideTextBox = document.getElementById("guide");
+
+                if (data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else if (data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
+
+    function saveform() {
+
+        let comment = $('#post-comment').val()
+
+        $.ajax({
+            type: "POST",
+            url: "/",
+            data: {comment_give: comment},
+            success: function (response) { // 성공하면
+                alert(response["msg"]);
+                window.location.reload()
+            }
+        })
+    }
+
+    function setThumbnail(event) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = document.createElement("img");
+            img.setAttribute("src", event.target.result);
+            document.querySelector("div#image_container").appendChild(img);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function readImage(input) {
+        // 인풋 태그에 파일이 있는 경우
+        if (input.files && input.files[0]) {
+            // 이미지 파일인지 검사 (생략)
+            // FileReader 인스턴스 생성
+            const reader = new FileReader()
+            // 이미지가 로드가 된 경우
+            reader.onload = e => {
+                const previewImage = document.getElementById("preview-image")
+                previewImage.src = e.target.result
+            }
+            // reader가 이미지 읽도록 하기
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+
+    // input file에 change 이벤트 부여
+    const inputImage = document.getElementById("input-image")
+    inputImage.addEventListener("change", e => {
+        readImage(e.target)
+    })
+
+</script>
+
+</html>

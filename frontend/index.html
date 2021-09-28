@@ -56,14 +56,15 @@
                 url: "http://spartacodingclub.shop/post",
                 data: {},
                 success: function (response) {
+
                     let articles = response['articles'];
                     for (let i = 0; i < articles.length; i++) {
-                        let article = articles[i];
-                        let image = article["image"];
-                        let url = article["url"];
-                        let title = article["title"];
-                        let desc = article["desc"];
-                        let comment = article["comment"];
+                        let article = articles[i]
+                        let image=article['image']
+                        let url=article['url']
+                        let title=article['title']
+                        let desc=article['desc']
+                        let comment=article['comment']
                         let temp_html = `<div class="card">
                              <img class="card-img-top" src="${image}" alt="Card image cap">
                              <div class="card-body">
@@ -72,10 +73,12 @@
                                <p class="card-text comment">${comment}</p>
                              </div>
                            </div>`;
-                        $('#cards-box').append(temp_html);
-                    }
-                }
-            })
+                       $('#cards-box').append(temp_html);}
+
+            }
+        }
+
+        )
         }
 
 
